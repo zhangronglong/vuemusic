@@ -1,36 +1,35 @@
 <template>
-	<div class="musicList">
-		<div class="musicList-top">
-			<div class="title">发现好歌单</div>
-			<div class="more">查看更多</div>
-		</div>
-		<div class="mlist">
-			<div class="swiper-container" id="musicSwiper">
-				<div class="swiper-wrapper">
-					<div class="swiper-slide" v-for="item in musicls.musics" :key="item.id">
-						<img :src="item.picUrl" alt="">
-					    <div class="name">{{ item.name }}</div>
-						<div class="count">
-							<svg class="icon" aria-hidden="true">
-								<use xlink:href="#icon-fanjutuijian"></use>
-							</svg>
-							<span>{{ changeValue(item.playCount) }}</span>
-						</div>
-					</div>
-					
-					
-					
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class="musicList">
+        <div class="musicList-top">
+            <div class="title">发现好歌单</div>
+            <div class="more">查看更多</div>
+        </div>
+        <div class="mlist">
+            <div class="swiper-container" id="musicSwiper">
+                <div class="swiper-wrapper">
+                    <router-link :to="{ path:'/listview',query:{id:item.id} }" class="swiper-slide" v-for="item in musicls.musics" :key="item.id">
+                        <img :src="item.picUrl" alt="">
+                        <div class="name">{{ item.name }}</div>
+                        <div class="count">
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-fanjutuijian"></use>
+                            </svg>
+                            <span>{{ changeValue(item.playCount) }}</span>
+                        </div>
+                    </router-link>
+                </div>
+            </div>
+        </div>
+    </div>
 </template>
+
 
 <script>
 	import "swiper/css/swiper.css"
 	import Swiper from "swiper"
     import { onMounted,onUpdated,reactive } from "vue"
 	import { getMusic } from "@/api/index.js"  //指的是项目目录 src
+	
 	export default {
 	  name: 'musiclist',
 	  setup(){

@@ -12,5 +12,10 @@ export function getMusic(limlt=10){
 	return axios.get(`${baseUrl}/personalized?limlt=${limlt}`);
 }
 
+//封装获取歌单详情的api 调用例子 : /playlist/detail?id=24381616
+export function getMusicList(id){
+	return axios.get(`${baseUrl}/playlist/detail?id=${id}`);
+}
+
 //对外抛出
 export default {getBanner,getMusic};
